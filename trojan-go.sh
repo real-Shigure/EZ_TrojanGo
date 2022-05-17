@@ -675,34 +675,34 @@ setFakeWebsite() {
     
     case $[RANDOM%10+1] in
     1)
-        wget -O fakeWebsite.zip https://raw.githubusercontent.com/real-Shigure/fakeWebsiteforTrojanGo/main/fakeWebsite-1.zip
+        wget -O fakeWebsite.zip https://raw.githubusercontent.com/real-Shigure/EZ_TrojanGo/main/fakeWebsite-1.zip
         ;;
     2)
-        wget -O fakeWebsite.zip https://raw.githubusercontent.com/real-Shigure/fakeWebsiteforTrojanGo/main/fakeWebsite-2.zip
+        wget -O fakeWebsite.zip https://raw.githubusercontent.com/real-Shigure/EZ_TrojanGo/main/fakeWebsite-2.zip
         ;;
     3)
-        wget -O fakeWebsite.zip https://raw.githubusercontent.com/real-Shigure/fakeWebsiteforTrojanGo/main/fakeWebsite-3.zip
+        wget -O fakeWebsite.zip https://raw.githubusercontent.com/real-Shigure/EZ_TrojanGo/main/fakeWebsite-3.zip
         ;;
     4)
-        wget -O fakeWebsite.zip https://raw.githubusercontent.com/real-Shigure/fakeWebsiteforTrojanGo/main/fakeWebsite-4.zip
+        wget -O fakeWebsite.zip https://raw.githubusercontent.com/real-Shigure/EZ_TrojanGo/main/fakeWebsite-4.zip
         ;;
     5)
-        wget -O fakeWebsite.zip https://raw.githubusercontent.com/real-Shigure/fakeWebsiteforTrojanGo/main/fakeWebsite-5.zip
+        wget -O fakeWebsite.zip https://raw.githubusercontent.com/real-Shigure/EZ_TrojanGo/main/fakeWebsite-5.zip
         ;;
     6)
-        wget -O fakeWebsite.zip https://raw.githubusercontent.com/real-Shigure/fakeWebsiteforTrojanGo/main/fakeWebsite-6.zip
+        wget -O fakeWebsite.zip https://raw.githubusercontent.com/real-Shigure/EZ_TrojanGo/main/fakeWebsite-6.zip
         ;;
     7)
-        wget -O fakeWebsite.zip https://raw.githubusercontent.com/real-Shigure/fakeWebsiteforTrojanGo/main/fakeWebsite-7.zip
+        wget -O fakeWebsite.zip https://raw.githubusercontent.com/real-Shigure/EZ_TrojanGo/main/fakeWebsite-7.zip
         ;;
     8)
-        wget -O fakeWebsite.zip https://raw.githubusercontent.com/real-Shigure/fakeWebsiteforTrojanGo/main/fakeWebsite-8.zip
+        wget -O fakeWebsite.zip https://raw.githubusercontent.com/real-Shigure/EZ_TrojanGo/main/fakeWebsite-8.zip
         ;;
     9)
-        wget -O fakeWebsite.zip https://raw.githubusercontent.com/real-Shigure/fakeWebsiteforTrojanGo/main/fakeWebsite-9.zip
+        wget -O fakeWebsite.zip https://raw.githubusercontent.com/real-Shigure/EZ_TrojanGo/main/fakeWebsite-9.zip
         ;;
     10)
-        wget -O fakeWebsite.zip https://raw.githubusercontent.com/real-Shigure/fakeWebsiteforTrojanGo/main/fakeWebsite-10.zip
+        wget -O fakeWebsite.zip https://raw.githubusercontent.com/real-Shigure/EZ_TrojanGo/main/fakeWebsite-10.zip
         ;;
     esac
 
