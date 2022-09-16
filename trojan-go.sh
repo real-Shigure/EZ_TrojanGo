@@ -671,9 +671,11 @@ installBBR() {
 setFakeWebsite() {
     if [[ "$PROXY_URL" = "" ]]; then
     echo ""
-    colorEcho $BLUE " 配置静态伪装站点...($randNum)"
+
+    rNum=$(($RANDOM%10))
+    colorEcho $BLUE " 配置静态伪装站点...($rNum)"
     
-    case $[RANDOM%10+1] in
+    case $rNum in
     1)
         wget -O fakeWebsite.zip https://raw.githubusercontent.com/real-Shigure/EZ_TrojanGo/main/fakeWebsite-1.zip
         ;;
@@ -701,7 +703,7 @@ setFakeWebsite() {
     9)
         wget -O fakeWebsite.zip https://raw.githubusercontent.com/real-Shigure/EZ_TrojanGo/main/fakeWebsite-9.zip
         ;;
-    10)
+    0)
         wget -O fakeWebsite.zip https://raw.githubusercontent.com/real-Shigure/EZ_TrojanGo/main/fakeWebsite-10.zip
         ;;
     esac
