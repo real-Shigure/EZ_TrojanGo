@@ -232,6 +232,7 @@ getData() {
     echo "   (1) 静态网站 (位于/usr/share/nginx/html)"
     echo "   (2) 高清壁纸站 (https://bing.imeizi.me)"
     echo "   (3) 自定义反代站点 (需以http或https开头)"
+    echo "   (4) music-unlock site"
     read -p "  请选择伪装网站类型 [默认:静态网站]:" answer
     if [[ -z "$answer" ]]; then
         PROXY_URL=""
@@ -252,6 +253,9 @@ getData() {
                 colorEcho $RED " 反代网站必须以http或https开头！"
                 exit 1
             fi
+            ;;
+        4)
+            PROXY_URL=""
             ;;
         *)
             colorEcho $RED " 请输入正确的选项！"
@@ -434,7 +438,7 @@ http {
     sendfile            on;
     tcp_nopush          on;
     tcp_nodelay         on;
-    keepalive_timeout   65;
+    keepalive_timeout   64;
     types_hash_max_size 2048;
     gzip                on;
 
@@ -454,10 +458,30 @@ EOF
         cat > $NGINX_CONF_PATH${DOMAIN}.conf<<-EOF
 server {
     listen 80;
+    server_name _;
+    return 403;
+}
+server {
+    listen 80;
     listen [::]:80;
     server_name ${DOMAIN};
     root /usr/share/nginx/html;
-
+    
+    return 302 https://${domain}\${request_uri};
+}
+server {
+    listen 443;
+    listen [::]:443;
+    server_name ${DOMAIN};
+    root /usr/share/nginx/html;
+    location / {
+        proxy_ssl_server_name on;
+        proxy_pass $PROXY_URL;
+        proxy_set_header Accept-Encoding '';
+        sub_filter "$REMOTE_HOST" "$DOMAIN";
+        sub_filter_once off;
+    }
+    
     $ROBOT_CONFIG
 }
 EOF
@@ -465,7 +489,20 @@ EOF
         cat > $NGINX_CONF_PATH${DOMAIN}.conf<<-EOF
 server {
     listen 80;
+    server_name _;
+    return 403;
+}
+server {
+    listen 80;
     listen [::]:80;
+    server_name ${DOMAIN};
+    root /usr/share/nginx/html;
+    
+    return 302 https://${domain}\${request_uri};
+}
+server {
+    listen 443;
+    listen [::]:443;
     server_name ${DOMAIN};
     root /usr/share/nginx/html;
     location / {
@@ -672,41 +709,45 @@ setFakeWebsite() {
     if [[ "$PROXY_URL" = "" ]]; then
     echo ""
 
-    rNum=$(($RANDOM%10))
-    colorEcho $BLUE " 配置静态伪装站点...($rNum)"
+    read -p "  请选择网站类型 [非空:music-unlock]:" webanswer
+    if [[ -z "$webanswer" ]]; then
+        rNum=$(($RANDOM%10))
+        colorEcho $BLUE " 配置静态伪装站点...($rNum)"
     
-    case $rNum in
-    1)
+        case $rNum in
+        1)
         wget -O fakeWebsite.zip https://raw.githubusercontent.com/real-Shigure/EZ_TrojanGo/main/fakeWebsite-1.zip
         ;;
-    2)
+        2)
         wget -O fakeWebsite.zip https://raw.githubusercontent.com/real-Shigure/EZ_TrojanGo/main/fakeWebsite-2.zip
         ;;
-    3)
+        3)
         wget -O fakeWebsite.zip https://raw.githubusercontent.com/real-Shigure/EZ_TrojanGo/main/fakeWebsite-3.zip
         ;;
-    4)
+        4)
         wget -O fakeWebsite.zip https://raw.githubusercontent.com/real-Shigure/EZ_TrojanGo/main/fakeWebsite-4.zip
         ;;
-    5)
+        5)
         wget -O fakeWebsite.zip https://raw.githubusercontent.com/real-Shigure/EZ_TrojanGo/main/fakeWebsite-5.zip
         ;;
-    6)
+        6)
         wget -O fakeWebsite.zip https://raw.githubusercontent.com/real-Shigure/EZ_TrojanGo/main/fakeWebsite-6.zip
         ;;
-    7)
+        7)
         wget -O fakeWebsite.zip https://raw.githubusercontent.com/real-Shigure/EZ_TrojanGo/main/fakeWebsite-7.zip
         ;;
-    8)
+        8)
         wget -O fakeWebsite.zip https://raw.githubusercontent.com/real-Shigure/EZ_TrojanGo/main/fakeWebsite-8.zip
         ;;
-    9)
+        9)
         wget -O fakeWebsite.zip https://raw.githubusercontent.com/real-Shigure/EZ_TrojanGo/main/fakeWebsite-9.zip
         ;;
-    0)
+        0)
         wget -O fakeWebsite.zip https://raw.githubusercontent.com/real-Shigure/EZ_TrojanGo/main/fakeWebsite-10.zip
         ;;
-    esac
+        esac
+    else
+        wget -O fakeWebsite.zip https://github.com/unlock-music/unlock-music/releases/download/v1.10.0/modern.zip
 
     rm -f /usr/share/nginx/html/index.html
     rm -f /usr/share/doc/HTML/index.html
