@@ -707,53 +707,53 @@ installBBR() {
 
 setFakeWebsite() {
     if [[ "$PROXY_URL" = "" ]]; then
-    echo ""
+        read -p "  请选择网站类型 [非空:music-unlock]:" webanswer
+        if [[ -z "$webanswer" ]]; then
+            rNum=$(($RANDOM%10))
+            colorEcho $BLUE " 配置静态伪装站点...($rNum)"
 
-    read -p "  请选择网站类型 [非空:music-unlock]:" webanswer
-    if [[ -z "$webanswer" ]]; then
-        rNum=$(($RANDOM%10))
-        colorEcho $BLUE " 配置静态伪装站点...($rNum)"
-    
-        case $rNum in
-        1)
-        wget -O fakeWebsite.zip https://raw.githubusercontent.com/real-Shigure/EZ_TrojanGo/main/fakeWebsite-1.zip
-        ;;
-        2)
-        wget -O fakeWebsite.zip https://raw.githubusercontent.com/real-Shigure/EZ_TrojanGo/main/fakeWebsite-2.zip
-        ;;
-        3)
-        wget -O fakeWebsite.zip https://raw.githubusercontent.com/real-Shigure/EZ_TrojanGo/main/fakeWebsite-3.zip
-        ;;
-        4)
-        wget -O fakeWebsite.zip https://raw.githubusercontent.com/real-Shigure/EZ_TrojanGo/main/fakeWebsite-4.zip
-        ;;
-        5)
-        wget -O fakeWebsite.zip https://raw.githubusercontent.com/real-Shigure/EZ_TrojanGo/main/fakeWebsite-5.zip
-        ;;
-        6)
-        wget -O fakeWebsite.zip https://raw.githubusercontent.com/real-Shigure/EZ_TrojanGo/main/fakeWebsite-6.zip
-        ;;
-        7)
-        wget -O fakeWebsite.zip https://raw.githubusercontent.com/real-Shigure/EZ_TrojanGo/main/fakeWebsite-7.zip
-        ;;
-        8)
-        wget -O fakeWebsite.zip https://raw.githubusercontent.com/real-Shigure/EZ_TrojanGo/main/fakeWebsite-8.zip
-        ;;
-        9)
-        wget -O fakeWebsite.zip https://raw.githubusercontent.com/real-Shigure/EZ_TrojanGo/main/fakeWebsite-9.zip
-        ;;
-        0)
-        wget -O fakeWebsite.zip https://raw.githubusercontent.com/real-Shigure/EZ_TrojanGo/main/fakeWebsite-10.zip
-        ;;
-        esac
-    else
-        wget -O fakeWebsite.zip https://github.com/unlock-music/unlock-music/releases/download/v1.10.0/modern.zip
+            case $rNum in
+            1)
+            wget -O fakeWebsite.zip https://raw.githubusercontent.com/real-Shigure/EZ_TrojanGo/main/fakeWebsite-1.zip
+            ;;
+            2)
+            wget -O fakeWebsite.zip https://raw.githubusercontent.com/real-Shigure/EZ_TrojanGo/main/fakeWebsite-2.zip
+            ;;
+            3)
+            wget -O fakeWebsite.zip https://raw.githubusercontent.com/real-Shigure/EZ_TrojanGo/main/fakeWebsite-3.zip
+            ;;
+            4)
+            wget -O fakeWebsite.zip https://raw.githubusercontent.com/real-Shigure/EZ_TrojanGo/main/fakeWebsite-4.zip
+            ;;
+            5)
+            wget -O fakeWebsite.zip https://raw.githubusercontent.com/real-Shigure/EZ_TrojanGo/main/fakeWebsite-5.zip
+            ;;
+            6)
+            wget -O fakeWebsite.zip https://raw.githubusercontent.com/real-Shigure/EZ_TrojanGo/main/fakeWebsite-6.zip
+            ;;
+            7)
+            wget -O fakeWebsite.zip https://raw.githubusercontent.com/real-Shigure/EZ_TrojanGo/main/fakeWebsite-7.zip
+            ;;
+            8)
+            wget -O fakeWebsite.zip https://raw.githubusercontent.com/real-Shigure/EZ_TrojanGo/main/fakeWebsite-8.zip
+            ;;
+            9)
+            wget -O fakeWebsite.zip https://raw.githubusercontent.com/real-Shigure/EZ_TrojanGo/main/fakeWebsite-9.zip
+            ;;
+            0)
+            wget -O fakeWebsite.zip https://raw.githubusercontent.com/real-Shigure/EZ_TrojanGo/main/fakeWebsite-10.zip
+            ;;
+            esac
+        else
+            wget -O fakeWebsite.zip https://github.com/unlock-music/unlock-music/releases/download/v1.10.0/modern.zip
+        fi
 
     rm -f /usr/share/nginx/html/index.html
     rm -f /usr/share/doc/HTML/index.html
     mv fakeWebsite.zip /usr/share/nginx/html/
     unzip -d /usr/share/nginx/html/ /usr/share/nginx/html/fakeWebsite.zip
     rm -f /usr/share/nginx/html/fakeWebsite.zip
+
     fi
 }
 
