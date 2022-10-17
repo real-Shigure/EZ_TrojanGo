@@ -470,8 +470,8 @@ server {
     return 302 https://${domain}\${request_uri};
 }
 server {
-    listen 443;
-    listen [::]:443;
+    listen ${PORT};
+    listen [::]:${PORT};
     server_name ${DOMAIN};
     root /usr/share/nginx/html;
     location / {
@@ -501,8 +501,8 @@ server {
     return 302 https://${domain}\${request_uri};
 }
 server {
-    listen 443;
-    listen [::]:443;
+    listen ${PORT};
+    listen [::]:${PORT};
     server_name ${DOMAIN};
     root /usr/share/nginx/html;
     location / {
