@@ -260,7 +260,11 @@ getData() {
     fi
     REMOTE_HOST=`echo ${PROXY_URL} | cut -d/ -f3`
     echo ""
-    colorEcho $BLUE " 伪装网站：$PROXY_URL"
+    if [[ -z "$PROXY_URL" ]]; then
+        colorEcho $BLUE " 伪装网站：静态网站"
+    else
+        colorEcho $BLUE " 伪装网站：$PROXY_URL"
+    fi
 
     echo ""
     colorEcho $BLUE " 是否允许搜索引擎爬取网站？ [默认：不允许]"
